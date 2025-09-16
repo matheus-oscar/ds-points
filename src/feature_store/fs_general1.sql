@@ -1,9 +1,9 @@
 WITH tb_rfv AS (
 
-SELECT 
+    SELECT 
         idCustomer,
         
-        CAST(MIN(julianday('2024-06-04') - julianday(dtTransaction)) 
+        CAST(MIN(julianday('{date}') - julianday(dtTransaction)) 
             AS INTEGER) + 1 AS recenciaDias,
         
         COUNT( DISTINCT DATE(dtTransaction)) AS frequenciaDias,
@@ -12,12 +12,12 @@ SELECT
                 WHEN pointsTransaction > 0 THEN pointsTransaction 
             END) AS valorPoints
 
-FROM transactions
+    FROM transactions
 
-WHERE dtTransaction < '2024-06-04'
-AND dtTransaction >= DATE('2024-06-04', '-21 days')
+    WHERE dtTransaction < '{date}'
+    AND dtTransaction >= DATE('{date}', '-21 days')
 
-GROUP BY idCustomer
+    GROUP BY idCustomer
 
 ),
 
@@ -26,7 +26,8 @@ tb_idade AS (
     SELECT 
 
         t1.idCustomer,
-        CAST(MAX(julianday('2024-06-04') - julianday(t2.dtTransaction)) 
+        
+        CAST(MAX(julianday('{date}') - julianday(t2.dtTransaction)) 
             AS INTEGER) + 1 AS idadebaseDias 
 
     FROM tb_rfv as t1
@@ -38,7 +39,8 @@ tb_idade AS (
 
 )
 
-SELECT t1.*,
+SELECT '{date}' AS dtRef,
+    t1.*,
     t2.idadebaseDias,
     t3.flEmail
 

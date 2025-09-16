@@ -6,3 +6,8 @@ __pycache__
 dsenv/
 
 ppt/
+
+venv/
+env/
+.venv/
+.env/
