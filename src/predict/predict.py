@@ -8,7 +8,7 @@ import mlflow.sklearn
 
 import json
 
-print("Scrip para execução de modelos iniciado!")
+print("Script para execução de modelos iniciado!")
 
 print("Carregando modelo...")
 mlflow.set_tracking_uri("http://192.168.1.100:8081")

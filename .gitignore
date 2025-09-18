@@ -3,4 +3,11 @@ __pycache__
 *.csv
 *.xlsx
 *.pkl
+*.pdf
+ppt/
 dsenv/
+
+venv/
+env/
+.env/
+.venv/
